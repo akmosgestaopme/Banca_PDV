@@ -34,12 +34,8 @@ const AppContent: React.FC = () => {
       try {
         console.log('Initializing app data...');
         
-        // Verificar se estamos em ambiente Electron
-        const isElectron = !!(window as any).electronAPI;
-        console.log('Is Electron:', isElectron);
-        
         // Inicializar dados do sistema
-        db.initializeData();
+        await db.initializeData();
         
         // Configurar favicon personalizado se existir
         const savedFavicon = localStorage.getItem('company_favicon');

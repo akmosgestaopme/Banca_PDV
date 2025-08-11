@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { User } from '../types';
+import { db } from '../services/database';
 
 interface AuthContextType {
   user: User | null;
@@ -31,15 +32,19 @@ export const useAuthProvider = () => {
   }, []);
 
   const login = async (usuario: string, senha: string): Promise<boolean> => {
-    const users = JSON.parse(localStorage.getItem('pdv_users') || '[]') as User[];
-    const foundUser = users.find(u => u.usuario === usuario && u.senha === senha && u.ativo);
+    try {
+      const foundUser = await db.getUserByCredentials(usuario, senha);
     
-    if (foundUser) {
-      setUser(foundUser);
-      localStorage.setItem('pdv_current_user', JSON.stringify(foundUser));
-      return true;
+      if (foundUser) {
+        setUser(foundUser);
+        localStorage.setItem('pdv_current_user', JSON.stringify(foundUser));
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Erro no login:', error);
+      return false;
     }
-    return false;
   };
 
   const logout = () => {
