@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variáveis CSS para cores dinâmicas */
+:root {
+  --color-primary: #0d214f;
+  --color-secondary: #ea580c;
+  --color-primary-rgb: 13, 33, 79;
+  --color-secondary-rgb: 234, 88, 12;
+}
+
 /* Classes utilitárias para cores dinâmicas */
 @layer utilities {
   .text-primary {
@@ -45,33 +53,6 @@
     background-color: var(--color-secondary);
     filter: brightness(0.9);
   }
-  
-  .focus-primary:focus {
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
-  }
-  
-  .gradient-primary {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  }
-  
-  .gradient-secondary {
-    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-primary) 100%);
-  }
-  
-  .sidebar-gradient {
-    background: linear-gradient(180deg, var(--color-primary) 0%, #1e40af 50%, #0c4a6e 100%);
-  }
-  
-  .hover-primary:hover {
-    background-color: rgba(var(--color-primary-rgb), 0.1);
-    color: var(--color-primary);
-  }
-  
-  .hover-secondary:hover {
-    background-color: rgba(var(--color-secondary-rgb), 0.1);
-    color: var(--color-secondary);
-  }
 }
 
 /* Scrollbar personalizada */
@@ -94,147 +75,38 @@
   background: var(--color-secondary);
 }
 
-/* Estilização dos sliders RGB */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background: transparent;
-  cursor: pointer;
-}
-
-input[type="range"]::-webkit-slider-track {
-  background: transparent;
-  height: 12px;
-  border-radius: 6px;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-input[type="range"]::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-input[type="range"]::-moz-range-track {
-  background: transparent;
-  height: 12px;
-  border-radius: 6px;
-  border: none;
-}
-
-input[type="range"]::-moz-range-thumb {
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: var(--color-primary);
-  border: 2px solid #ffffff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-input[type="range"]::-moz-range-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Sliders específicos para RGB */
-.rgb-slider-red::-webkit-slider-thumb {
-  background: #ef4444 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.rgb-slider-green::-webkit-slider-thumb {
-  background: #10b981 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.rgb-slider-blue::-webkit-slider-thumb {
-  background: #3b82f6 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.rgb-slider-red::-moz-range-thumb {
-  background: #ef4444 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.rgb-slider-green::-moz-range-thumb {
-  background: #10b981 !important;
-  border: 2px solid #ffffff !important;
-}
-
-.rgb-slider-blue::-moz-range-thumb {
-  background: #3b82f6 !important;
-  border: 2px solid #ffffff !important;
-}
-
 /* Animações suaves */
 * {
   transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
-/* Variáveis CSS para cores */
-:root {
-  --color-primary: #0d214f;
-  --color-secondary: #ea580c;
-  --color-primary-rgb: 13, 33, 79;
-  --color-secondary-rgb: 234, 88, 12;
+/* Responsividade */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 50;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
 }
 
-/* Melhorias visuais para o color picker */
-.color-preview-shadow {
-  box-shadow: 
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 2px 4px -1px rgba(0, 0, 0, 0.06),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-.color-picker-container {
-  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-}
-
-.dark .color-picker-container {
-  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
-}
-
-/* Efeitos de hover para botões de cores rápidas */
-.quick-color-btn {
-  transition: all 0.2s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.quick-color-btn:hover {
-  transform: scale(1.1);
-  z-index: 10;
-}
-
-.quick-color-btn:hover::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, rgba(255,255,255,0.2) 0%, transparent 100%);
-  border-radius: inherit;
-}
-
-/* Animação de loading para aplicação de cores */
-@keyframes colorPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
-}
-
-.color-applying {
-  animation: colorPulse 1s ease-in-out infinite;
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  
+  #receipt, #receipt * {
+    visibility: visible;
+  }
+  
+  #receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
 }

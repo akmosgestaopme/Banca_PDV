@@ -100,11 +100,11 @@ export interface CashMovement {
   caixaId: string;
   sessaoId?: string;
   tipo: 'entrada' | 'saida';
-  categoria: 'venda' | 'despesa' | 'receita' | 'sangria' | 'suprimento' | 'troco' | 'abertura' | 'fechamento';
+  categoria: string;
   subcategoria?: string;
   descricao: string;
   valor: number;
-  formaPagamento: 'dinheiro' | 'cartao_debito' | 'cartao_credito' | 'pix' | 'cheque' | 'transferencia';
+  formaPagamento: string;
   vendaId?: string;
   usuarioId: string;
   usuario: string;
@@ -122,7 +122,7 @@ export interface Expense {
   dataPagamento?: string;
   pago: boolean;
   recorrente: boolean;
-  formaPagamento?: 'dinheiro' | 'cartao_debito' | 'cartao_credito' | 'pix' | 'cheque' | 'transferencia';
+  formaPagamento?: string;
   parcelas?: number;
   observacoes?: string;
   usuarioId: string;

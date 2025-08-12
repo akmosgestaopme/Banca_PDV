@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { User } from '../types';
-import { db } from '../services/database';
+import { supabaseDb } from '../services/supabase-database';
 
 interface AuthContextType {
   user: User | null;
@@ -8,7 +8,6 @@ interface AuthContextType {
   logout: () => void;
   isAuthenticated: boolean;
   hasPermission: (requiredRole: User['tipo'][]) => boolean;
-  checkPermission: (permissionId: string) => boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,7 +32,7 @@ export const useAuthProvider = () => {
 
   const login = async (usuario: string, senha: string): Promise<boolean> => {
     try {
-      const foundUser = await db.getUserByCredentials(usuario, senha);
+      const foundUser = await supabaseDb.getUserByCredentials(usuario, senha);
     
       if (foundUser) {
         setUser(foundUser);
@@ -57,33 +56,12 @@ export const useAuthProvider = () => {
     return requiredRoles.includes(user.tipo);
   };
 
-  const checkPermission = (permissionId: string): boolean => {
-    if (!user) return false;
-    
-    // Carregar as definições de permissões
-    const rolesPermissions = JSON.parse(localStorage.getItem('pdv_roles_permissions') || '[]');
-    
-    // Encontrar o cargo do usuário atual
-    const userRole = rolesPermissions.find((role: any) => role.id === user.tipo);
-    
-    // Verificar se o usuário tem a permissão específica
-    if (userRole && userRole.permissions) {
-      return userRole.permissions.includes(permissionId);
-    }
-    
-    // Administradores têm acesso a tudo por padrão
-    if (user.tipo === 'administrador') return true;
-    
-    return false;
-  };
-
   return {
     user,
     login,
     logout,
     isAuthenticated: !!user,
-    hasPermission,
-    checkPermission
+    hasPermission
   };
 };
 

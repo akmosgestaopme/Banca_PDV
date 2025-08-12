@@ -27,21 +27,14 @@ export const useThemeProvider = () => {
 
   useEffect(() => {
     localStorage.setItem('pdv_theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    document.documentElement.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'light' ? 'dark' : 'light');
   };
 
-  return {
-    theme,
-    toggleTheme
-  };
+  return { theme, toggleTheme };
 };
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {

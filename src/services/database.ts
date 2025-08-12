@@ -112,113 +112,12 @@ class DatabaseService {
 
   // Inicialização
   async initializeData(): Promise<void> {
-    return await supabaseDb.initializeData();
+    console.log('Database service initialized');
   }
 
   // Backup
   async exportData(): Promise<string> {
     return await supabaseDb.exportData();
-  }
-
-  // Métodos síncronos para compatibilidade (serão convertidos para async onde necessário)
-  createUser(user: Omit<User, 'id' | 'criadoEm'>): User {
-    throw new Error('Use createUser async method');
-  }
-
-  getAllUsers(): User[] {
-    throw new Error('Use getAllUsers async method');
-  }
-
-  updateUser(id: string, updates: Partial<User>): boolean {
-    throw new Error('Use updateUser async method');
-  }
-
-  createProduct(product: Omit<Product, 'id' | 'criadoEm'>): Product {
-    throw new Error('Use createProduct async method');
-  }
-
-  getAllProducts(): Product[] {
-    throw new Error('Use getAllProducts async method');
-  }
-
-  updateProduct(id: string, updates: Partial<Product>): boolean {
-    throw new Error('Use updateProduct async method');
-  }
-
-  getProductByCode(code: string): Product | undefined {
-    throw new Error('Use getProductByCode async method');
-  }
-
-  createSupplier(supplier: Omit<Supplier, 'id' | 'criadoEm'>): Supplier {
-    throw new Error('Use createSupplier async method');
-  }
-
-  getAllSuppliers(): Supplier[] {
-    throw new Error('Use getAllSuppliers async method');
-  }
-
-  updateSupplier(id: string, updates: Partial<Supplier>): boolean {
-    throw new Error('Use updateSupplier async method');
-  }
-
-  createCashRegister(register: Omit<CashRegister, 'id' | 'criadoEm'>): CashRegister {
-    throw new Error('Use createCashRegister async method');
-  }
-
-  getAllCashRegisters(): CashRegister[] {
-    throw new Error('Use getAllCashRegisters async method');
-  }
-
-  updateCashRegister(id: string, updates: Partial<CashRegister>): boolean {
-    throw new Error('Use updateCashRegister async method');
-  }
-
-  openCashSession(sessionData: any): CashSession {
-    throw new Error('Use openCashSession async method');
-  }
-
-  closeCashSession(sessionId: string, valorFechamento: number, observacoes?: string): boolean {
-    throw new Error('Use closeCashSession async method');
-  }
-
-  getAllCashSessions(): CashSession[] {
-    throw new Error('Use getAllCashSessions async method');
-  }
-
-  createCashMovement(movement: Omit<CashMovement, 'id' | 'data'>): CashMovement {
-    throw new Error('Use createCashMovement async method');
-  }
-
-  getAllCashMovements(): CashMovement[] {
-    throw new Error('Use getAllCashMovements async method');
-  }
-
-  createSale(sale: Omit<Sale, 'id' | 'numero'>): Sale {
-    throw new Error('Use createSale async method');
-  }
-
-  getAllSales(): Sale[] {
-    throw new Error('Use getAllSales async method');
-  }
-
-  createExpense(expense: Omit<Expense, 'id' | 'criadoEm'>): Expense {
-    throw new Error('Use createExpense async method');
-  }
-
-  getAllExpenses(): Expense[] {
-    throw new Error('Use getAllExpenses async method');
-  }
-
-  updateExpense(id: string, updates: Partial<Expense>): boolean {
-    throw new Error('Use updateExpense async method');
-  }
-
-  deleteExpense(id: string): boolean {
-    throw new Error('Use deleteExpense async method');
-  }
-
-  exportData(): string {
-    throw new Error('Use exportData async method');
   }
 }
 
