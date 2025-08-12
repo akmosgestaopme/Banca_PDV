@@ -739,13 +739,8 @@ class SupabaseDatabase {
 
   // Método para inicializar dados (não necessário com Supabase, dados são inseridos via migration)
   async initializeData(): Promise<void> {
-    // Verificar se já existem usuários
-    const { data: users } = await supabase
-      .from('users')
-      .select('id')
-      .limit(1);
-
-    // Se não há usuários, os dados serão inseridos automaticamente pelas migrations
+    // Em ambiente webcontainer, não fazemos consultas externas durante inicialização
+    // Os dados serão inseridos automaticamente pelas migrations quando conectar ao Supabase
     console.log('Database initialized with Supabase');
   }
 
