@@ -217,11 +217,6 @@ class DatabaseService {
     throw new Error('Use deleteExpense async method');
   }
 
-  initializeData(): void {
-    // Método síncrono mantido para compatibilidade
-    this.initializeData().catch(console.error);
-  }
-
   exportData(): string {
     throw new Error('Use exportData async method');
   }
