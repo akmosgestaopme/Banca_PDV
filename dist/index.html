@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDV Banca de Jornal - Sistema de Ponto de Venda • CYBERPIU</title>
+    <meta name="description" content="Sistema PDV completo para banca de jornal desenvolvido pela CYBERPIU" />
+    <meta name="keywords" content="PDV, Ponto de Venda, Banca de Jornal, CYBERPIU, Sistema ERP" />
+    <style>
+      :root {
+        --color-primary: #0d214f;
+        --color-secondary: #ea580c;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      }
+      
+      @media print {
+        body * {
+          visibility: hidden;
+        }
+        #receipt, #receipt * {
+          visibility: visible;
+        }
+        #receipt {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+        }
+      }
+      
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        color: white;
+      }
+      
+      .loading-logo {
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-CZKeGah3.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BNWvtGsR.css">
+  </head>
+  <body>
+    <div id="loading" class="loading-screen">
+      <div class="loading-logo">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+          <line x1="3" y1="6" x2="21" y2="6"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+      </div>
+      <div style="font-size: 24px; font-weight: bold; margin-bottom: 10px;">PDV BANCA</div>
+      <div style="font-size: 14px; opacity: 0.8;">Powered by CYBERPIU</div>
+    </div>
+    
+    <div id="root"></div>
+    
+    <script>
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loading = document.getElementById('loading');
+          const root = document.getElementById('root');
+          
+          if (loading && root && root.children.length > 0) {
+            loading.style.opacity = '0';
+            loading.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => loading.remove(), 500);
+          }
+        }, 2000);
+      });
+    </script>
+    
+  </body>
+</html>
