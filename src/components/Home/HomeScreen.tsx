@@ -202,4 +202,4 @@ const HomeScreen: React.FC = () => {
   );
 };
 
-export default LoginScreen;
+export default HomeScreen;
