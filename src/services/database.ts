@@ -1,4 +1,4 @@
-import { supabaseDb } from './supabase-database';
+import { db as supabaseDb } from './supabase-database';
 import { User, Product, Supplier, Sale, CashMovement, Expense, CashRegister, CashSession } from '../types';
 
 class DatabaseService {

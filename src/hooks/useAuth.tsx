@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { User } from '../types';
-import { supabaseDb } from '../services/supabase-database';
+import { db } from '../services/supabase-database';
 
 interface AuthContextType {
   user: User | null;
@@ -32,7 +32,7 @@ export const useAuthProvider = () => {
 
   const login = async (usuario: string, senha: string): Promise<boolean> => {
     try {
-      const foundUser = await supabaseDb.getUserByCredentials(usuario, senha);
+      const foundUser = await db.getUserByCredentials(usuario, senha);
     
       if (foundUser) {
         setUser(foundUser);
