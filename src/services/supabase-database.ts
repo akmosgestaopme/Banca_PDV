@@ -373,5 +373,5 @@ class SupabaseDatabase {
   }
 }
 
-export const db = new DatabaseService();
+export const db = new SupabaseDatabase();
 export default db;
